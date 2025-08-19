@@ -1,0 +1,28 @@
+// app.js
+
+const messagesDiv = document.getElementById("messages");
+const messageInput = document.getElementById("messageInput");
+const sendBtn = document.getElementById("sendBtn");
+
+// پیغام بھیجنے کا فنکشن
+sendBtn.addEventListener("click", () => {
+  const text = messageInput.value.trim();
+  if (text !== "") {
+    addMessage("آپ", text);
+    messageInput.value = "";
+
+    // یہاں پر آپ چاہیں تو سرور یا AI response لگا سکتے ہیں
+    setTimeout(() => {
+      addMessage("Bot", "یہ ایک demo reply ہے۔");
+    }, 1000);
+  }
+});
+
+// پیغام ڈسپلے کرنے کا فنکشن
+function addMessage(sender, text) {
+  const div = document.createElement("div");
+  div.classList.add("message");
+  div.innerHTML = `<strong>${sender}:</strong> ${text}`;
+  messagesDiv.appendChild(div);
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
